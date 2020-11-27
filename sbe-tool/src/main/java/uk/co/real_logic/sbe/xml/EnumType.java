@@ -46,6 +46,12 @@ public class EnumType extends Type
     private final Map<PrimitiveValue, ValidValue> validValueByPrimitiveValueMap = new LinkedHashMap<>();
     private final Map<String, ValidValue> validValueByNameMap = new LinkedHashMap<>();
 
+    /**
+     * Construct a new enumType from XML Schema.
+     *
+     * @param node from the XML Schema Parsing.
+     * @throws XPathExpressionException if the XPath is invalid.
+     */
     public EnumType(final Node node) throws XPathExpressionException
     {
         this(node, null, null);
@@ -54,10 +60,10 @@ public class EnumType extends Type
     /**
      * Construct a new enumType from XML Schema.
      *
-     * @param node           from the XML Schema Parsing
+     * @param node           from the XML Schema Parsing.
      * @param givenName      for the node.
      * @param referencedName of the type when created from a ref in a composite.
-     * @throws XPathExpressionException if the XPath is invalid
+     * @throws XPathExpressionException if the XPath is invalid.
      */
     public EnumType(final Node node, final String givenName, final String referencedName)
         throws XPathExpressionException
@@ -160,7 +166,7 @@ public class EnumType extends Type
                     handleError(
                         node,
                         "validValue " + v.name() + " uses nullValue: " +
-                        (null != nullValue ? nullValue : encodingType.nullValue()));
+                            (null != nullValue ? nullValue : encodingType.nullValue()));
                 }
                 else if (value < minValue || value > maxValue)
                 {

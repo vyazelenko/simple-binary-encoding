@@ -38,7 +38,7 @@ public abstract class Type
     /**
      * Construct a new Type from XML Schema. Called by subclasses to mostly set common fields
      *
-     * @param node           from the XML Schema Parsing
+     * @param node           from the XML Schema Parsing.
      * @param givenName      of this node, if null then the attributed name will be used.
      * @param referencedName of the type when created from a ref in a composite.
      */
@@ -170,6 +170,11 @@ public abstract class Type
         return semanticType;
     }
 
+    /**
+     * Checks if this type is a variable-length type.
+     *
+     * @return {@code true} if variable-lenght type.
+     */
     public abstract boolean isVariableLength();
 
     /**

@@ -29,7 +29,7 @@ import static uk.co.real_logic.sbe.generation.Generators.toUpperFirstChar;
 /**
  * Utilities for mapping between IR and the C++ language.
  */
-public class CppUtil
+final class CppUtil
 {
     private static final Map<PrimitiveType, String> PRIMITIVE_TYPE_STRING_ENUM_MAP = new EnumMap<>(PrimitiveType.class);
 
@@ -48,13 +48,17 @@ public class CppUtil
         PRIMITIVE_TYPE_STRING_ENUM_MAP.put(PrimitiveType.DOUBLE, "double");
     }
 
+    private CppUtil()
+    {
+    }
+
     /**
      * Map the name of a {@link uk.co.real_logic.sbe.PrimitiveType} to a C++98 primitive type name.
      *
      * @param primitiveType to map.
      * @return the name of the Java primitive that most closely maps.
      */
-    public static String cppTypeName(final PrimitiveType primitiveType)
+    static String cppTypeName(final PrimitiveType primitiveType)
     {
         return PRIMITIVE_TYPE_STRING_ENUM_MAP.get(primitiveType);
     }
@@ -65,7 +69,7 @@ public class CppUtil
      * @param value to be formatted.
      * @return the string formatted as a property name.
      */
-    public static String formatPropertyName(final String value)
+    static String formatPropertyName(final String value)
     {
         String formattedValue = toLowerFirstChar(value);
 
@@ -91,7 +95,7 @@ public class CppUtil
      * @param value to be formatted.
      * @return the string formatted as a class name.
      */
-    public static String formatClassName(final String value)
+    static String formatClassName(final String value)
     {
         return toUpperFirstChar(value);
     }
@@ -103,7 +107,7 @@ public class CppUtil
      * @param primitiveType of the {@link uk.co.real_logic.sbe.ir.Token}
      * @return the string formatted as the byte ordering encoding
      */
-    public static String formatByteOrderEncoding(final ByteOrder byteOrder, final PrimitiveType primitiveType)
+    static String formatByteOrderEncoding(final ByteOrder byteOrder, final PrimitiveType primitiveType)
     {
         switch (primitiveType.size())
         {
@@ -121,7 +125,7 @@ public class CppUtil
         }
     }
 
-    public static String closingBraces(final int count)
+    static String closingBraces(final int count)
     {
         return new String(new char[count]).replace("\0", "}\n");
     }

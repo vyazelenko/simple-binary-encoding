@@ -21,6 +21,9 @@ package uk.co.real_logic.sbe.xml;
  */
 public final class ParserOptions
 {
+    /**
+     * Default parse options.
+     */
     public static final ParserOptions DEFAULT = new ParserOptions(false, false, false, true, null);
 
     private final boolean stopOnError;

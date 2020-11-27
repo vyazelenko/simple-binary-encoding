@@ -49,50 +49,155 @@ public class PrimitiveValue
         BYTE_ARRAY
     }
 
+    /**
+     * Min value of a {@code char} type.
+     */
     public static final long MIN_VALUE_CHAR = 0x20;
+    /**
+     * Max value of a {@code char} type.
+     */
     public static final long MAX_VALUE_CHAR = 0x7E;
+    /**
+     * Null value of a {@code char} type.
+     */
     public static final long NULL_VALUE_CHAR = 0;
 
+    /**
+     * Min value of a {@code int8} type.
+     */
     public static final long MIN_VALUE_INT8 = -127;
+    /**
+     * Max value of a {@code int8} type.
+     */
     public static final long MAX_VALUE_INT8 = 127;
+    /**
+     * Null value of a {@code int8} type.
+     */
     public static final long NULL_VALUE_INT8 = -128;
 
+    /**
+     * Min value of a {@code uint8} type.
+     */
     public static final long MIN_VALUE_UINT8 = 0;
+    /**
+     * Max value of a {@code uint8} type.
+     */
     public static final long MAX_VALUE_UINT8 = 254;
+    /**
+     * Null value of a {@code uint8} type.
+     */
     public static final long NULL_VALUE_UINT8 = 255;
 
+    /**
+     * Min value of a {@code int16} type.
+     */
     public static final long MIN_VALUE_INT16 = -32767;
+    /**
+     * Max value of a {@code int16} type.
+     */
     public static final long MAX_VALUE_INT16 = 32767;
+    /**
+     * Null value of a {@code int16} type.
+     */
     public static final long NULL_VALUE_INT16 = -32768;
 
+    /**
+     * Min value of a {@code uint16} type.
+     */
     public static final long MIN_VALUE_UINT16 = 0;
+    /**
+     * Max value of a {@code uint16} type.
+     */
     public static final long MAX_VALUE_UINT16 = 65534;
+    /**
+     * Null value of a {@code uint16} type.
+     */
     public static final long NULL_VALUE_UINT16 = 65535;
 
+    /**
+     * Min value of a {@code int32} type.
+     */
     public static final long MIN_VALUE_INT32 = -2147483647;
+    /**
+     * Max value of a {@code int32} type.
+     */
     public static final long MAX_VALUE_INT32 = 2147483647;
+    /**
+     * Null value of a {@code int32} type.
+     */
     public static final long NULL_VALUE_INT32 = -2147483648;
 
+    /**
+     * Min value of a {@code uint32} type.
+     */
     public static final long MIN_VALUE_UINT32 = 0;
+    /**
+     * Max value of a {@code uint32} type.
+     */
     public static final long MAX_VALUE_UINT32 = 0xFFFF_FFFFL - 1;
+    /**
+     * Null value of a {@code uint32} type.
+     */
     public static final long NULL_VALUE_UINT32 = 0xFFFF_FFFFL;
 
+    /**
+     * Min value of a {@code int64} type.
+     */
     public static final long MIN_VALUE_INT64 = Long.MIN_VALUE + 1; // (-2 ^ 63) + 1
+    /**
+     * Max value of a {@code int64} type.
+     */
     public static final long MAX_VALUE_INT64 = Long.MAX_VALUE;     // ( 2 ^ 63) - 1
+    /**
+     * Null value of a {@code int64} type.
+     */
     public static final long NULL_VALUE_INT64 = Long.MIN_VALUE;    // (-2 ^ 63)
 
+    /**
+     * Min value of a {@code uint64} type.
+     */
     public static final long MIN_VALUE_UINT64 = 0;
+    /**
+     * Max value of a {@code uint64} type.
+     */
     public static final BigInteger BI_MAX_VALUE_UINT64 = new BigInteger("18446744073709551614");
+    /**
+     * Max value of a {@code uint64} type.
+     */
     public static final long MAX_VALUE_UINT64 = BI_MAX_VALUE_UINT64.longValue(); // (2 ^ 64) - 2
+    /**
+     * Null value of a {@code uint64} type.
+     */
     public static final BigInteger BI_NULL_VALUE_UINT64 = new BigInteger("18446744073709551615");
+    /**
+     * Null value of a {@code uint64} type.
+     */
     public static final long NULL_VALUE_UINT64 = BI_NULL_VALUE_UINT64.longValue(); // (2 ^ 64) - 1
 
+    /**
+     * Min value of a {@code float} type.
+     */
     public static final float MIN_VALUE_FLOAT = Float.MIN_VALUE;
+    /**
+     * Max value of a {@code float} type.
+     */
     public static final float MAX_VALUE_FLOAT = Float.MAX_VALUE;
+    /**
+     * Null value of a {@code float} type.
+     */
     public static final float NULL_VALUE_FLOAT = Float.NaN;
 
+    /**
+     * Min value of a {@code double} type.
+     */
     public static final double MIN_VALUE_DOUBLE = Double.MIN_VALUE;
+    /**
+     * Max value of a {@code double} type.
+     */
     public static final double MAX_VALUE_DOUBLE = Double.MAX_VALUE;
+    /**
+     * Null value of a {@code double} type.
+     */
     public static final double NULL_VALUE_DOUBLE = Double.NaN;
 
     private final Representation representation;

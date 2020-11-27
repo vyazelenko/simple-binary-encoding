@@ -50,6 +50,12 @@ public class GolangGenerator implements CodeGenerator
 
     private TreeSet<String> imports;
 
+    /**
+     * Constructs an instance using provided IR and output manager.
+     *
+     * @param ir            to generate code from.
+     * @param outputManager to store generated code.
+     */
     public GolangGenerator(final Ir ir, final OutputManager outputManager)
     {
         Verify.notNull(ir, "ir");
@@ -57,62 +63,6 @@ public class GolangGenerator implements CodeGenerator
 
         this.ir = ir;
         this.outputManager = outputManager;
-    }
-
-    public void generateFileFromTemplate(final String fileName, final String templateName) throws IOException
-    {
-        try (Writer out = outputManager.createOutput(fileName))
-        {
-            out.append(generateFromTemplate(ir.namespaces(), templateName));
-        }
-    }
-
-    public void generateTypeStubs() throws IOException
-    {
-        for (final List<Token> tokens : ir.types())
-        {
-            switch (tokens.get(0).signal())
-            {
-                case BEGIN_ENUM:
-                    generateEnum(tokens);
-                    break;
-
-                case BEGIN_SET:
-                    generateChoiceSet(tokens);
-                    break;
-
-                case BEGIN_COMPOSITE:
-                    generateComposite(tokens, "");
-                    break;
-
-                default:
-                    break;
-            }
-        }
-    }
-
-    // MessageHeader is special but the standard allows it to be
-    // pretty arbitrary after the first four fields.
-    // All we need is the imports, type declaration, and encode/decode
-    public void generateMessageHeaderStub() throws IOException
-    {
-        final String messageHeader = "MessageHeader";
-        try (Writer out = outputManager.createOutput(messageHeader))
-        {
-            final StringBuilder sb = new StringBuilder();
-            final List<Token> tokens = ir.headerStructure().tokens();
-
-            imports = new TreeSet<>();
-            imports.add("io");
-
-            generateTypeDeclaration(sb, messageHeader);
-            generateTypeBodyComposite(sb, messageHeader, tokens.subList(1, tokens.size() - 1));
-
-            generateEncodeDecode(sb, messageHeader, tokens.subList(1, tokens.size() - 1), false, false);
-            generateCompositePropertyElements(sb, messageHeader, tokens.subList(1, tokens.size() - 1));
-            out.append(generateFileHeader(ir.namespaces()));
-            out.append(sb);
-        }
     }
 
     public void generate() throws IOException
@@ -173,6 +123,62 @@ public class GolangGenerator implements CodeGenerator
                 out.append(generateFileHeader(ir.namespaces()));
                 out.append(sb);
             }
+        }
+    }
+
+    private void generateFileFromTemplate(final String fileName, final String templateName) throws IOException
+    {
+        try (Writer out = outputManager.createOutput(fileName))
+        {
+            out.append(generateFromTemplate(ir.namespaces(), templateName));
+        }
+    }
+
+    private void generateTypeStubs() throws IOException
+    {
+        for (final List<Token> tokens : ir.types())
+        {
+            switch (tokens.get(0).signal())
+            {
+                case BEGIN_ENUM:
+                    generateEnum(tokens);
+                    break;
+
+                case BEGIN_SET:
+                    generateChoiceSet(tokens);
+                    break;
+
+                case BEGIN_COMPOSITE:
+                    generateComposite(tokens, "");
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    // MessageHeader is special but the standard allows it to be
+    // pretty arbitrary after the first four fields.
+    // All we need is the imports, type declaration, and encode/decode
+    private void generateMessageHeaderStub() throws IOException
+    {
+        final String messageHeader = "MessageHeader";
+        try (Writer out = outputManager.createOutput(messageHeader))
+        {
+            final StringBuilder sb = new StringBuilder();
+            final List<Token> tokens = ir.headerStructure().tokens();
+
+            imports = new TreeSet<>();
+            imports.add("io");
+
+            generateTypeDeclaration(sb, messageHeader);
+            generateTypeBodyComposite(sb, messageHeader, tokens.subList(1, tokens.size() - 1));
+
+            generateEncodeDecode(sb, messageHeader, tokens.subList(1, tokens.size() - 1), false, false);
+            generateCompositePropertyElements(sb, messageHeader, tokens.subList(1, tokens.size() - 1));
+            out.append(generateFileHeader(ir.namespaces()));
+            out.append(sb);
         }
     }
 

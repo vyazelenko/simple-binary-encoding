@@ -40,11 +40,17 @@ import static uk.co.real_logic.sbe.ir.GenerationUtil.*;
  * Codec generator for the C11 programming language.
  */
 @SuppressWarnings("MethodLength")
-public class CGenerator implements CodeGenerator
+public final class CGenerator implements CodeGenerator
 {
     private final Ir ir;
     private final OutputManager outputManager;
 
+    /**
+     * Create generator instance using provider IR and output manager.
+     *
+     * @param ir to generate from.
+     * @param outputManager to use.
+     */
     public CGenerator(final Ir ir, final OutputManager outputManager)
     {
         Verify.notNull(ir, "ir");
@@ -52,57 +58,6 @@ public class CGenerator implements CodeGenerator
 
         this.ir = ir;
         this.outputManager = outputManager;
-    }
-
-    public void generateMessageHeaderStub() throws IOException
-    {
-        generateComposite(ir.namespaces(), ir.headerStructure().tokens());
-    }
-
-    public List<String> generateTypeStubs(final CharSequence[] scope) throws IOException
-    {
-        final List<String> typesToInclude = new ArrayList<>();
-
-        for (final List<Token> tokens : ir.types())
-        {
-            switch (tokens.get(0).signal())
-            {
-                case BEGIN_ENUM:
-                    generateEnum(scope, tokens);
-                    break;
-
-                case BEGIN_SET:
-                    generateChoiceSet(scope, tokens);
-                    break;
-
-                case BEGIN_COMPOSITE:
-                    generateComposite(scope, tokens);
-                    break;
-            }
-
-            typesToInclude.add(tokens.get(0).applicableTypeName());
-        }
-
-        return typesToInclude;
-    }
-
-    public List<String> generateTypesToIncludes(final List<Token> tokens)
-    {
-        final List<String> typesToInclude = new ArrayList<>();
-
-        for (final Token token : tokens)
-        {
-            switch (token.signal())
-            {
-                case BEGIN_ENUM:
-                case BEGIN_SET:
-                case BEGIN_COMPOSITE:
-                    typesToInclude.add(token.applicableTypeName());
-                    break;
-            }
-        }
-
-        return typesToInclude;
     }
 
     public void generate() throws IOException
@@ -171,6 +126,57 @@ public class CGenerator implements CodeGenerator
                 out.append("\n#endif\n");
             }
         }
+    }
+
+    private void generateMessageHeaderStub() throws IOException
+    {
+        generateComposite(ir.namespaces(), ir.headerStructure().tokens());
+    }
+
+    private List<String> generateTypeStubs(final CharSequence[] scope) throws IOException
+    {
+        final List<String> typesToInclude = new ArrayList<>();
+
+        for (final List<Token> tokens : ir.types())
+        {
+            switch (tokens.get(0).signal())
+            {
+                case BEGIN_ENUM:
+                    generateEnum(scope, tokens);
+                    break;
+
+                case BEGIN_SET:
+                    generateChoiceSet(scope, tokens);
+                    break;
+
+                case BEGIN_COMPOSITE:
+                    generateComposite(scope, tokens);
+                    break;
+            }
+
+            typesToInclude.add(tokens.get(0).applicableTypeName());
+        }
+
+        return typesToInclude;
+    }
+
+    private List<String> generateTypesToIncludes(final List<Token> tokens)
+    {
+        final List<String> typesToInclude = new ArrayList<>();
+
+        for (final Token token : tokens)
+        {
+            switch (token.signal())
+            {
+                case BEGIN_ENUM:
+                case BEGIN_SET:
+                case BEGIN_COMPOSITE:
+                    typesToInclude.add(token.applicableTypeName());
+                    break;
+            }
+        }
+
+        return typesToInclude;
     }
 
     private void generateGroups(

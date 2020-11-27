@@ -30,11 +30,15 @@ import java.nio.ByteOrder;
 /**
  * Utility functions for working with {@link Ir}.
  */
-public class IrUtil
+final class IrUtil
 {
-    public static final byte[] EMPTY_BUFFER = new byte[0];
+    private IrUtil()
+    {
+    }
 
-    public static ByteOrderCodec mapByteOrder(final ByteOrder byteOrder)
+    static final byte[] EMPTY_BUFFER = new byte[0];
+
+    static ByteOrderCodec mapByteOrder(final ByteOrder byteOrder)
     {
         if (byteOrder == ByteOrder.BIG_ENDIAN)
         {
@@ -44,7 +48,7 @@ public class IrUtil
         return ByteOrderCodec.SBE_LITTLE_ENDIAN;
     }
 
-    public static ByteOrder mapByteOrder(final ByteOrderCodec byteOrder)
+    static ByteOrder mapByteOrder(final ByteOrderCodec byteOrder)
     {
         switch (byteOrder)
         {
@@ -58,7 +62,7 @@ public class IrUtil
         return ByteOrder.LITTLE_ENDIAN;
     }
 
-    public static SignalCodec mapSignal(final Signal signal)
+    static SignalCodec mapSignal(final Signal signal)
     {
         switch (signal)
         {
@@ -116,7 +120,7 @@ public class IrUtil
         }
     }
 
-    public static Signal mapSignal(final SignalCodec signal)
+    static Signal mapSignal(final SignalCodec signal)
     {
         switch (signal)
         {
@@ -174,7 +178,7 @@ public class IrUtil
         }
     }
 
-    public static PrimitiveTypeCodec mapPrimitiveType(final PrimitiveType type)
+    static PrimitiveTypeCodec mapPrimitiveType(final PrimitiveType type)
     {
         if (type == null)
         {
@@ -221,7 +225,7 @@ public class IrUtil
         }
     }
 
-    public static PrimitiveType mapPrimitiveType(final PrimitiveTypeCodec type)
+    static PrimitiveType mapPrimitiveType(final PrimitiveTypeCodec type)
     {
         switch (type)
         {
@@ -264,7 +268,7 @@ public class IrUtil
         }
     }
 
-    public static int put(final MutableDirectBuffer buffer, final PrimitiveValue value, final PrimitiveType type)
+    static int put(final MutableDirectBuffer buffer, final PrimitiveValue value, final PrimitiveType type)
     {
         if (value == null)
         {
@@ -337,7 +341,7 @@ public class IrUtil
         }
     }
 
-    public static PrimitiveValue get(final DirectBuffer buffer, final PrimitiveType type, final int length)
+    static PrimitiveValue get(final DirectBuffer buffer, final PrimitiveType type, final int length)
     {
         if (length == 0)
         {
@@ -393,7 +397,7 @@ public class IrUtil
         }
     }
 
-    public static byte[] getBytes(final String value, final String characterEncoding)
+    static byte[] getBytes(final String value, final String characterEncoding)
         throws UnsupportedEncodingException
     {
         if (null == value)
@@ -405,7 +409,7 @@ public class IrUtil
     }
 
 
-    public static Encoding.Presence mapPresence(final PresenceCodec presence)
+    static Encoding.Presence mapPresence(final PresenceCodec presence)
     {
         switch (presence)
         {
@@ -419,7 +423,7 @@ public class IrUtil
         return Encoding.Presence.REQUIRED;
     }
 
-    public static PresenceCodec mapPresence(final Encoding.Presence presence)
+    static PresenceCodec mapPresence(final Encoding.Presence presence)
     {
         switch (presence)
         {

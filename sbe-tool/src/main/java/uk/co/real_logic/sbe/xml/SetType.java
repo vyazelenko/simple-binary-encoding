@@ -44,6 +44,13 @@ public class SetType extends Type
     private final Map<PrimitiveValue, Choice> choiceByPrimitiveValueMap = new LinkedHashMap<>();
     private final Map<String, Choice> choiceByNameMap = new LinkedHashMap<>();
 
+    /**
+     * Construct a new SetType from XML Schema.
+     *
+     * @param node           from the XML Schema Parsing.
+     * @throws XPathExpressionException on invalid XPath.
+     * @throws IllegalArgumentException on illegal encoding type.
+     */
     public SetType(final Node node)
         throws XPathExpressionException, IllegalArgumentException
     {
@@ -53,7 +60,7 @@ public class SetType extends Type
     /**
      * Construct a new SetType from XML Schema.
      *
-     * @param node           from the XML Schema Parsing
+     * @param node           from the XML Schema Parsing.
      * @param givenName      for the node.
      * @param referencedName of the type when created from a ref in a composite.
      * @throws XPathExpressionException on invalid XPath.

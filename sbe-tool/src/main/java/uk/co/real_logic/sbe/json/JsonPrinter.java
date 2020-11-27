@@ -32,18 +32,36 @@ public class JsonPrinter
     private final OtfHeaderDecoder headerDecoder;
     private final Ir ir;
 
+    /**
+     * Create an instance using given IR.
+     *
+     * @param ir to print.
+     */
     public JsonPrinter(final Ir ir)
     {
         this.ir = ir;
         headerDecoder = new OtfHeaderDecoder(ir.headerStructure());
     }
 
+    /**
+     * Pretty print encoded message as JSON String.
+     *
+     * @param encodedMessage to print.
+     * @param output         to store the result.
+     */
     public void print(final ByteBuffer encodedMessage, final StringBuilder output)
     {
         final UnsafeBuffer buffer = new UnsafeBuffer(encodedMessage);
         print(output, buffer, 0);
     }
 
+    /**
+     * Pretty print encoded message as JSON String.
+     *
+     * @param output       to store the result.
+     * @param buffer       containing encoded message.
+     * @param bufferOffset offset within buffer where message begins.
+     */
     public void print(final StringBuilder output, final UnsafeBuffer buffer, final int bufferOffset)
     {
         final int blockLength = headerDecoder.getBlockLength(buffer, bufferOffset);
@@ -73,6 +91,12 @@ public class JsonPrinter
         }
     }
 
+    /**
+     * Pretty print encoded message as JSON String.
+     *
+     * @param encodedMessage to print.
+     * @return a JSON representation of the message.
+     */
     public String print(final ByteBuffer encodedMessage)
     {
         final StringBuilder sb = new StringBuilder();

@@ -368,72 +368,143 @@ public class Token
         private int componentTokenCount = 1;
         private Encoding encoding = new Encoding();
 
+        /**
+         * Signal the role of this token.
+         *
+         * @param signal the role of this token.
+         * @return this for a fluent API. this for a fluent API.
+         */
         public Builder signal(final Signal signal)
         {
             this.signal = signal;
             return this;
         }
 
+        /**
+         * Set the name of the token
+         *
+         * @param name of the token.
+         * @return this for a fluent API.
+         */
         public Builder name(final String name)
         {
             this.name = name;
             return this;
         }
 
+        /**
+         * Set the name of the type when this is from a reference.
+         *
+         * @param referencedName the name of the type when this is from a reference.
+         * @return this for a fluent API.
+         */
         public Builder referencedName(final String referencedName)
         {
             this.referencedName = referencedName;
             return this;
         }
 
+        /**
+         * Set the description for what the token is to be used for.
+         *
+         * @param description for what the token is to be used for.
+         * @return this for a fluent API.
+         */
         public Builder description(final String description)
         {
             this.description = description;
             return this;
         }
 
+        /**
+         * Set the ID of the token assigned by the specification.
+         *
+         * @param id of the token assigned by the specification.
+         * @return this for a fluent API.
+         */
         public Builder id(final int id)
         {
             this.id = id;
             return this;
         }
 
+        /**
+         * Set the version context for this token.
+         *
+         * @param version context for this token. This is the schema version in which the type was introduced.
+         * @return this for a fluent API.
+         */
         public Builder version(final int version)
         {
             this.version = version;
             return this;
         }
 
+        /**
+         * Set the version in which this token was deprecated.
+         *
+         * @param deprecated version in which this token was deprecated.
+         * @return this for a fluent API.
+         */
         public Builder deprecated(final int deprecated)
         {
             this.deprecated = deprecated;
             return this;
         }
 
+        /**
+         * Set the encodedLength of this token in bytes.
+         *
+         * @param size encodedLength of this token in bytes.
+         * @return this for a fluent API.
+         */
         public Builder size(final int size)
         {
             this.size = size;
             return this;
         }
 
+        /**
+         * Set the offset for this token in the message.
+         *
+         * @param offset for this token in the message.
+         * @return this for a fluent API.
+         */
         public Builder offset(final int offset)
         {
             this.offset = offset;
             return this;
         }
 
+        /**
+         * Set the number of tokens that make up this component.
+         *
+         * @param componentTokenCount number of tokens that make up this component.
+         * @return this for a fluent API.
+         */
         public Builder componentTokenCount(final int componentTokenCount)
         {
             this.componentTokenCount = componentTokenCount;
             return this;
         }
 
+        /**
+         * Set the encoding of this token.
+         *
+         * @param encoding of this token.
+         * @return this for a fluent API.
+         */
         public Builder encoding(final Encoding encoding)
         {
             this.encoding = encoding;
             return this;
         }
 
+        /**
+         * Create an instance of a {@link Token} using configured values.
+         *
+         * @return {@link Token}.
+         */
         public Token build()
         {
             return new Token(

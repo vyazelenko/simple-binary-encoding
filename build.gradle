@@ -195,6 +195,12 @@ subprojects {
 
     javadoc {
         failOnError false
+
+        // FIXME: Include but silence
+        exclude 'uk/co/real_logic/sbe/ir/generated/**'
+        exclude 'baseline/**'
+        exclude 'extension/**'
+
         title = '<h1>Simple Binary Encoding (SBE)</h1>'
         options.bottom = '<i>Copyright &#169; 2013-2020 Real Logic Limited. All Rights Reserved.</i>'
         options.encoding = 'UTF-8'

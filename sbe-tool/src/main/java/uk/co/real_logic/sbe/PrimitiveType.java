@@ -22,16 +22,49 @@ import static uk.co.real_logic.sbe.PrimitiveValue.*;
  */
 public enum PrimitiveType
 {
+    /**
+     * Constant for a {code char} type.
+     */
     CHAR("char", 1, MIN_VALUE_CHAR, MAX_VALUE_CHAR, NULL_VALUE_CHAR),
+    /**
+     * Constant for a {code int8} type.
+     */
     INT8("int8", 1, MIN_VALUE_INT8, MAX_VALUE_INT8, NULL_VALUE_INT8),
+    /**
+     * Constant for a {code int16} type.
+     */
     INT16("int16", 2, MIN_VALUE_INT16, MAX_VALUE_INT16, NULL_VALUE_INT16),
+    /**
+     * Constant for a {code int32} type.
+     */
     INT32("int32", 4, MIN_VALUE_INT32, MAX_VALUE_INT32, NULL_VALUE_INT32),
+    /**
+     * Constant for a {code int64} type.
+     */
     INT64("int64", 8, MIN_VALUE_INT64, MAX_VALUE_INT64, NULL_VALUE_INT64),
+    /**
+     * Constant for a {code uint8} type.
+     */
     UINT8("uint8", 1, MIN_VALUE_UINT8, MAX_VALUE_UINT8, NULL_VALUE_UINT8),
+    /**
+     * Constant for a {code uint16} type.
+     */
     UINT16("uint16", 2, MIN_VALUE_UINT16, MAX_VALUE_UINT16, NULL_VALUE_UINT16),
+    /**
+     * Constant for a {code uint32} type.
+     */
     UINT32("uint32", 4, MIN_VALUE_UINT32, MAX_VALUE_UINT32, NULL_VALUE_UINT32),
+    /**
+     * Constant for a {code uint64} type.
+     */
     UINT64("uint64", 8, MIN_VALUE_UINT64, MAX_VALUE_UINT64, NULL_VALUE_UINT64),
+    /**
+     * Constant for a {code float} type.
+     */
     FLOAT("float", 4, MIN_VALUE_FLOAT, MAX_VALUE_FLOAT, NULL_VALUE_FLOAT),
+    /**
+     * Constant for a {code double} type.
+     */
     DOUBLE("double", 8, MIN_VALUE_DOUBLE, MAX_VALUE_DOUBLE, NULL_VALUE_DOUBLE);
 
     private static final PrimitiveType[] VALUES = PrimitiveType.values();

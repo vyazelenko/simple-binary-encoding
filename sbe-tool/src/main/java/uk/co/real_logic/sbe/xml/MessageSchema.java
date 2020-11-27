@@ -15,8 +15,8 @@
  */
 package uk.co.real_logic.sbe.xml;
 
-import org.w3c.dom.Node;
 import org.agrona.Verify;
+import org.w3c.dom.Node;
 
 import java.nio.ByteOrder;
 import java.util.Collection;
@@ -44,6 +44,13 @@ public class MessageSchema
     private final Map<String, Type> typeByNameMap;
     private final Map<Long, Message> messageByIdMap;
 
+    /**
+     * Constructs {@link MessageSchema} instance.
+     *
+     * @param schemaNode     from the XML Schema Parsing.
+     * @param typeByNameMap  name to type mappings.
+     * @param messageByIdMap id to message mappings.
+     */
     public MessageSchema(
         final Node schemaNode, final Map<String, Type> typeByNameMap, final Map<Long, Message> messageByIdMap)
     {

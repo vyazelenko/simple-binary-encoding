@@ -35,7 +35,7 @@ import static java.lang.reflect.Modifier.STATIC;
 /**
  * Utilities for mapping between {@link uk.co.real_logic.sbe.ir.Ir} and the Java language.
  */
-public class JavaUtil
+final class JavaUtil
 {
     /**
      * Separator symbols for {@link Object#toString()} implementations on codecs.
@@ -54,7 +54,7 @@ public class JavaUtil
         KEY_VALUE('='),
         ENTRY(',');
 
-        public final char symbol;
+        private final char symbol;
 
         Separator(final char symbol)
         {
@@ -120,6 +120,10 @@ public class JavaUtil
         {
             throw new RuntimeException(ex);
         }
+    }
+
+    private JavaUtil()
+    {
     }
 
     /**

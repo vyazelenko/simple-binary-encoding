@@ -50,6 +50,12 @@ public class CSharpGenerator implements CodeGenerator
     private final Ir ir;
     private final OutputManager outputManager;
 
+    /**
+     * Constructs an instance using provided IR and output manager.
+     *
+     * @param ir            to generate code from.
+     * @param outputManager to store generated code.
+     */
     public CSharpGenerator(final Ir ir, final OutputManager outputManager)
     {
         Verify.notNull(ir, "ir");
@@ -57,34 +63,6 @@ public class CSharpGenerator implements CodeGenerator
 
         this.ir = ir;
         this.outputManager = outputManager;
-    }
-
-    public void generateMessageHeaderStub() throws IOException
-    {
-        generateComposite(ir.headerStructure().tokens());
-    }
-
-    public void generateTypeStubs() throws IOException
-    {
-        generateMetaAttributeEnum();
-
-        for (final List<Token> tokens : ir.types())
-        {
-            switch (tokens.get(0).signal())
-            {
-                case BEGIN_ENUM:
-                    generateEnum(tokens);
-                    break;
-
-                case BEGIN_SET:
-                    generateBitSet(tokens);
-                    break;
-
-                case BEGIN_COMPOSITE:
-                    generateComposite(tokens);
-                    break;
-            }
-        }
     }
 
     public void generate() throws IOException
@@ -123,6 +101,34 @@ public class CSharpGenerator implements CodeGenerator
 
                 out.append(INDENT + "}\n");
                 out.append("}\n");
+            }
+        }
+    }
+
+    private void generateMessageHeaderStub() throws IOException
+    {
+        generateComposite(ir.headerStructure().tokens());
+    }
+
+    private void generateTypeStubs() throws IOException
+    {
+        generateMetaAttributeEnum();
+
+        for (final List<Token> tokens : ir.types())
+        {
+            switch (tokens.get(0).signal())
+            {
+                case BEGIN_ENUM:
+                    generateEnum(tokens);
+                    break;
+
+                case BEGIN_SET:
+                    generateBitSet(tokens);
+                    break;
+
+                case BEGIN_COMPOSITE:
+                    generateComposite(tokens);
+                    break;
             }
         }
     }
@@ -633,7 +639,7 @@ public class CSharpGenerator implements CodeGenerator
             className);
     }
 
-    public static String generateDocumentation(final String indent, final Token token)
+    private static String generateDocumentation(final String indent, final Token token)
     {
         final String description = token.description();
         if (null == description || description.isEmpty())

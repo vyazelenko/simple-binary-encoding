@@ -65,6 +65,12 @@ public class ValidationUtil
         return true;
     }
 
+    /**
+     * Checks if a given token is a C keyword.
+     *
+     * @param token to check.
+     * @return {@code true} if token is a C keyword.
+     */
     public static boolean isCKeyword(final String token)
     {
         return C_KEYWORDS.contains(token);
@@ -151,6 +157,12 @@ public class ValidationUtil
         return true;
     }
 
+    /**
+     * Checks if a given token is a C++ keyword.
+     *
+     * @param token to check.
+     * @return {@code true} if token is a C++ keyword.
+     */
     public static boolean isCppKeyword(final String token)
     {
         return CPP_KEYWORDS.contains(token);
@@ -319,6 +331,12 @@ public class ValidationUtil
         return true;
     }
 
+    /**
+     * Checks if a given token is a golang keyword.
+     *
+     * @param token to check.
+     * @return {@code true} if token is a golang keyword.
+     */
     public static boolean isGolangKeyword(final String token)
     {
         return GOLANG_KEYWORDS.contains(token);
@@ -417,6 +435,12 @@ public class ValidationUtil
         return true;
     }
 
+    /**
+     * Checks if a given token is a csharp keyword.
+     *
+     * @param token to check.
+     * @return {@code true} if token is a csharp keyword.
+     */
     public static boolean isCSharpKeyword(final String token)
     {
         return CSHARP_KEYWORDS.contains(token);

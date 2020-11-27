@@ -36,6 +36,11 @@ public class JsonTokenListener implements TokenListener
     private int indentation = 0;
     private int compositeLevel = 0;
 
+    /**
+     * Constructs {@link JsonTokenListener} instance.
+     *
+     * @param output to add the JSON data to.
+     */
     public JsonTokenListener(final StringBuilder output)
     {
         this.output = output;

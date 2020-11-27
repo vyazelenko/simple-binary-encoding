@@ -26,9 +26,21 @@ import java.util.List;
  */
 public class HeaderStructure
 {
+    /**
+     * Name of the header field containing the block length in bytes.
+     */
     public static final String BLOCK_LENGTH = "blockLength";
+    /**
+     * Name of the header field containing the template ID.
+     */
     public static final String TEMPLATE_ID = "templateId";
+    /**
+     * Name of the header field containing the schema ID.
+     */
     public static final String SCHEMA_ID = "schemaId";
+    /**
+     * Name of the header field containing the schema version.
+     */
     public static final String SCHEMA_VERSION = "version";
 
     private final List<Token> tokens;

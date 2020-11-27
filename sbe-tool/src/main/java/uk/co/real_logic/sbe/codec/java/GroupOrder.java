@@ -27,5 +27,10 @@ import java.lang.annotation.Target;
 @Target({ ElementType.TYPE })
 public @interface GroupOrder
 {
+    /**
+     * List of classes to which repeating groups applies.
+     *
+     * @return list of classes.
+     */
     Class<?>[] value();
 }

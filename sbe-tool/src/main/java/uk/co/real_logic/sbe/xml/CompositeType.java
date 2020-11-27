@@ -50,6 +50,12 @@ public class CompositeType extends Type
     private final List<String> compositesPath = new ArrayList<>();
     private final Map<String, Type> containedTypeByNameMap = new LinkedHashMap<>();
 
+    /**
+     * Construct a new compositeType from XML Schema.
+     *
+     * @param node           from the XML Schema Parsing.
+     * @throws XPathExpressionException if the XPath is invalid.
+     */
     public CompositeType(final Node node) throws XPathExpressionException
     {
         this(node, null, null, new ArrayList<>());
@@ -58,7 +64,7 @@ public class CompositeType extends Type
     /**
      * Construct a new compositeType from XML Schema.
      *
-     * @param node           from the XML Schema Parsing
+     * @param node           from the XML Schema Parsing.
      * @param givenName      for this node.
      * @param referencedName of the type when created from a ref in a composite.
      * @param compositesPath with the path of composites that represents the levels of composition.
